@@ -25,6 +25,7 @@ final class MainViewController: NSViewController {
         super.viewDidLoad()
         self.setupView()
         self.webView.navigationDelegate = self
+        self.webView.uiDelegate = self
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             if let url = baseUrl {
                 self.webView.load(URLRequest(url: url))
@@ -134,5 +135,18 @@ extension MainViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         buttonBack.isEnabled = webView.backForwardList.backList.isEmpty ? false : true
         buttonForward.isEnabled = webView.backForwardList.forwardList.isEmpty ? false : true
+    }
+}
+
+//MARK: WKUIDelegate
+extension MainViewController: WKUIDelegate {
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil || navigationAction.targetFrame?.isMainFrame == false {
+            if let newURL = navigationAction.request.url {
+                self.webView.load(URLRequest(url: newURL))
+            }
+        }
+        return nil
     }
 }
