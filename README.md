@@ -10,7 +10,7 @@ To get started, open a project “WebWrapper1.xcodeproj”
     1.To change the URL:
 Open file with name “URL”
 
-![2](https://user-images.githubusercontent.com/58320644/154964865-6d6e1f8c-5b75-4917-90ea-b24d8b28b04f.png)
+<img src= "https://user-images.githubusercontent.com/58320644/154964865-6d6e1f8c-5b75-4917-90ea-b24d8b28b04f.png" width="272" height="219" />
 
 Replace URL string with new one:
 
@@ -20,7 +20,7 @@ Replace URL string with new one:
     2.To change project name:
 Open file with name “InfoPlist”: 
 
-![4](https://user-images.githubusercontent.com/58320644/154965039-0bf01d23-6ccb-45c9-8d4b-70441bab7738.png)
+<img src= "https://user-images.githubusercontent.com/58320644/154965039-0bf01d23-6ccb-45c9-8d4b-70441bab7738.png" width="272" height="219" />
 
 Replace two string with the name of the project with new ones:
 
@@ -30,7 +30,7 @@ Replace two string with the name of the project with new ones:
     3.To change project icon:
 Open file with name “Assets”:
 
-![Снимок экрана 2022-02-18 в 11 27 28 4](https://user-images.githubusercontent.com/58320644/154965771-2d3bdaab-c8dc-4dd4-8826-9b5ab0b5f331.png)
+<img src= "https://user-images.githubusercontent.com/58320644/154965771-2d3bdaab-c8dc-4dd4-8826-9b5ab0b5f331.png" width="272" height="219" />
 
 Next step, open “AppIcon”:
 
