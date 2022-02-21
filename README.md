@@ -1,6 +1,7 @@
 # WebWrapper1
 
-  Instructions for changing URL, icon and name in project WebWrapper1:
+Instructions for changing URL, icon and name in project WebWrapper1:
+
 To get started, open a project “WebWrapper1.xcodeproj”
 
 ![1](https://user-images.githubusercontent.com/58320644/154965207-68846e56-3e13-4bd7-b120-2cd8ffcd74aa.png)
