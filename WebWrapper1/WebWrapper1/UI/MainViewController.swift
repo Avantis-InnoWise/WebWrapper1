@@ -10,12 +10,12 @@ import WebKit
 
 final class MainViewController: NSViewController {
     
-    lazy private var buttonBack = setupButtonBack()
-    lazy private var buttonHome = setupButtonHome()
-    lazy private var buttonForward = setupButtonForward()
+    lazy private var btnBck = setupButtonBack()
+    lazy private var btnHem = setupButtonHome()
+    lazy private var btnFwd = setupButtonForward()
     
-    lazy private var boxView: NSBox = setupBoxView()
-    lazy private var webView: WKWebView = setupWebView()
+    lazy private var bxVew: NSBox = setupBoxView()
+    lazy private var wbVew: WKWebView = setupWebView()
     
     override func loadView() {
         self.view = NSView(frame: NSRect(origin: CGPoint(), size: CGSize(width: 836, height: 644)))
@@ -24,11 +24,11 @@ final class MainViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.webView.navigationDelegate = self
-        self.webView.uiDelegate = self
+        self.wbVew.navigationDelegate = self
+        self.wbVew.uiDelegate = self
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             if let url = baseUrl {
-                self.webView.load(URLRequest(url: url))
+                self.wbVew.load(URLRequest(url: url))
             }
         }
     }
@@ -40,15 +40,15 @@ final class MainViewController: NSViewController {
     }
     
     @objc private func backButtonAction() {
-        if buttonBack.isEnabled { webView.goBack() }
+        if btnBck.isEnabled { wbVew.goBack() }
     }
 
     @objc private func forwardButtonAction() {
-        if buttonForward.isEnabled { webView.goForward() }
+        if btnFwd.isEnabled { wbVew.goForward() }
     }
 
     @objc private func homeButtonAction() {
-        if let url = baseUrl { self.webView.load(URLRequest(url: url)) }
+        if let url = baseUrl { self.wbVew.load(URLRequest(url: url)) }
     }
 }
 
@@ -60,6 +60,7 @@ private extension MainViewController {
         button.configurate(title: Localized.buttonBackTitle, action: #selector(backButtonAction))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
+        button.layer?.backgroundColor = NSColor.lightGray.cgColor
         return button
     }
     
@@ -67,6 +68,7 @@ private extension MainViewController {
         let button = NSButton()
         button.configurate(title: Localized.buttonHomeTitle, action: #selector(homeButtonAction))
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer?.backgroundColor = NSColor.lightGray.cgColor
         return button
     }
     
@@ -75,6 +77,7 @@ private extension MainViewController {
         button.configurate(title: Localized.buttonForwardTitle, action: #selector(forwardButtonAction))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
+        button.layer?.backgroundColor = NSColor.lightGray.cgColor
         return button
     }
     
@@ -96,36 +99,36 @@ private extension MainViewController {
     }
     
     func addSubviews() {
-        self.view.addSubview(boxView)
-        self.view.addSubview(webView)
-        self.boxView.addSubview(buttonBack)
-        self.boxView.addSubview(buttonHome)
-        self.boxView.addSubview(buttonForward)
+        self.view.addSubview(bxVew)
+        self.view.addSubview(wbVew)
+        self.bxVew.addSubview(btnBck)
+        self.bxVew.addSubview(btnHem)
+        self.bxVew.addSubview(btnFwd)
     }
     
     func addConstraints() {
-        boxView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        boxView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        boxView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        bxVew.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        bxVew.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        bxVew.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         
-        buttonBack.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        buttonBack.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        buttonBack.centerYAnchor.constraint(equalTo: self.boxView.centerYAnchor).isActive = true
-        buttonBack.leftAnchor.constraint(equalTo: self.boxView.leftAnchor, constant: 30).isActive = true
+        btnBck.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        btnBck.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        btnBck.centerYAnchor.constraint(equalTo: self.bxVew.centerYAnchor).isActive = true
+        btnBck.leftAnchor.constraint(equalTo: self.bxVew.leftAnchor, constant: 30).isActive = true
         
-        buttonHome.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        buttonHome.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        buttonHome.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        buttonHome.centerYAnchor.constraint(equalTo: self.boxView.centerYAnchor).isActive = true
+        btnHem.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        btnHem.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        btnHem.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        btnHem.centerYAnchor.constraint(equalTo: self.bxVew.centerYAnchor).isActive = true
         
-        buttonForward.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        buttonForward.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        buttonForward.centerYAnchor.constraint(equalTo: self.boxView.centerYAnchor).isActive = true
-        buttonForward.rightAnchor.constraint(equalTo: self.boxView.rightAnchor, constant: -30).isActive = true
+        btnFwd.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        btnFwd.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        btnFwd.centerYAnchor.constraint(equalTo: self.bxVew.centerYAnchor).isActive = true
+        btnFwd.rightAnchor.constraint(equalTo: self.bxVew.rightAnchor, constant: -30).isActive = true
         
-        webView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        webView.topAnchor.constraint(equalTo: self.boxView.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        wbVew.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        wbVew.topAnchor.constraint(equalTo: self.bxVew.bottomAnchor).isActive = true
+        wbVew.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 }
 
@@ -133,8 +136,8 @@ private extension MainViewController {
 extension MainViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        buttonBack.isEnabled = webView.backForwardList.backList.isEmpty ? false : true
-        buttonForward.isEnabled = webView.backForwardList.forwardList.isEmpty ? false : true
+        btnBck.isEnabled = webView.backForwardList.backList.isEmpty ? false : true
+        btnFwd.isEnabled = webView.backForwardList.forwardList.isEmpty ? false : true
     }
 }
 
@@ -144,7 +147,7 @@ extension MainViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         if navigationAction.targetFrame == nil || navigationAction.targetFrame?.isMainFrame == false {
             if let newURL = navigationAction.request.url {
-                self.webView.load(URLRequest(url: newURL))
+                self.wbVew.load(URLRequest(url: newURL))
             }
         }
         return nil
